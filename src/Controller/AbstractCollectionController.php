@@ -14,6 +14,10 @@ abstract class AbstractCollectionController extends BaseController
         $this->objectType = $objectType;
     }
 
+    protected function getObjectType() {
+        return $this->objectType;
+    }
+
     public function index()
     {
         $filter = $this->getParameter('filter', []);
