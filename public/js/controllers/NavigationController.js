@@ -10,4 +10,8 @@ angular.module("app.controllers").controller('NavigationController', function ($
     delete $localStorage.user;
     $location.path("/login");
   };
+
+  $(document).on('click', function (){
+    $scope.$apply('systemDropdown = false');
+  });
 });

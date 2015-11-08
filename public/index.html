@@ -52,7 +52,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
             <li><p class="navbar-text navbar-right hidden-xs" ng-show="isLoggedIn()">Hello, {{user.name}}</p></li>
-            <li class="dropdown" ng-class="{ open : systemDropdown }" ng-init="systemDropdown = false" ng-click="systemDropdown = !systemDropdown">
+            <li class="dropdown" ng-class="{ open : systemDropdown }" ng-init="systemDropdown = false" ng-click="systemDropdown = !systemDropdown; $event.stopPropagation();">
               <a href class="dropdown-toggle"><span class="glyphicon glyphicon-cog"></span> System <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href ng-click="go('/settings')"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
