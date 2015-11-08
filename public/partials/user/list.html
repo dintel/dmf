@@ -1,0 +1,103 @@
+<style>
+#usersTbl td:nth-child(1) {
+  width: 24px;
+}
+
+#usersTbl td:nth-child(6) {
+  width: 100px;
+}
+</style>
+
+<div class="page-header">
+  <h1>Users</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4>List of users <button class="pull-right btn btn-default btn-xs" type="button" ng-click="refresh(true)"><span class="glyphicon glyphicon-refresh"></span></button></h4>
+      </div>
+      <table id="usersTbl" class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Login</th>
+            <th>Type</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="danger"><td colspan="6" class="text-center" ng-show="users.length == 0">No users defined!</td></tr>
+          <tr ng-repeat="user in users" ng-class="{danger: !user.active, success: user.active}">
+            <td><input type="checkbox" ng-model="selection[user.id]"></td>
+            <td><a href ng-click="showEditUser(user)">{{user.login}}</a></td>
+            <td>{{userTypeText(user.type)}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.name}}</td>
+            <td>{{activeText(user.active)}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-danger" ng-click="toggleModal('showDeleteModal')" ng-disabled="!isSelected()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        <button type="button" class="btn btn-primary" ng-click="showEditUser(defaultUser)"><span class="glyphicon glyphicon-plus-sign"></span> Add user</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<modal title="Delete confirmation" visible="showDeleteModal">
+  <div class="modal-body">
+    <p>Are you sure you want to delete following users?</p>
+    <ul>
+      <li ng-repeat="user in selectedUsers">{{user.login}} - {{user.name}}</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-danger" ng-click="delete()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+  </div>
+</modal>
+
+<modal title="{{editModalTitle}}" visible="showEditModal">
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Type: </label>
+      <select class="form-control" ng-model="editUser.type">
+        <option value="{{type.value}}" ng-repeat="type in types">{{type.name}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Login: </label>
+      <input type="text" class="form-control" placeholder="Login" ng-model="editUser.login" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label>Name: </label>
+      <input type="text" class="form-control" placeholder="Name" ng-model="editUser.name" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <input type="text" class="form-control" placeholder="Email" ng-model="editUser.email" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password: </label>
+      <input type="password" class="form-control" placeholder="Password (leave empty to let password stay unchanged)" ng-model="editUser.password" autocomplete="off" />
+    </div>
+    <div class="form-group">
+      <label for="password2">Password (confirmation): </label>
+      <input type="password" class="form-control" placeholder="Password (confirmation)" ng-model="editUser.password2" autocomplete="off" />
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" ng-model="editUser.active"> Active</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" ng-click="save()"><span class="glyphicon glyphicon-check"></span> Save</button>
+  </div>
+</modal>

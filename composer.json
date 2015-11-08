@@ -1,0 +1,19 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Application\\": "src/"
+    }
+  },
+  "require": {
+    "aura/router": "^2.3",
+    "dintel/mongo-object": "0.3.*",
+    "zendframework/zend-servicemanager": "^2.6",
+    "zendframework/zend-config": "^2.5",
+    "zendframework/zend-log": "^2.6",
+    "zendframework/zend-http": "^2.5",
+    "zendframework/zend-validator": "^2.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.0.*"
+  }
+}

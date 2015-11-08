@@ -1,0 +1,12 @@
+<?php
+return [
+//    'dispatcher' => [
+//        'basePath' => '/',
+//    ]
+//    'mongoObjectMapper' => [
+//        'database' => 'template',
+//    ],
+//    'mail' => [
+//        'from' => 'template@template.local',
+//    ],
+];

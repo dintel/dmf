@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./test/Bootstrap.php" colors="true" verbose="true">
+  <php>
+    <const name="WEB_SERVER_HOST" value="127.0.0.1" />
+    <const name="WEB_SERVER_PORT" value="1280" />
+    <const name="WEB_SERVER_DOCROOT" value="./public" />
+    <const name="TEST_DB_NAME" value="testDb" />
+  </php>
+  <testsuites>
+    <testsuite name="Application">
+      <directory>./test/Application</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <blacklist>
+      <directory>vendor</directory>
+    </blacklist>
+  </filter>
+  <logging>
+    <log type="coverage-text" target="php://stdout" showUncoveredFiles="true" />
+  </logging>
+</phpunit>
